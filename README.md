@@ -57,13 +57,13 @@ type Task struct {
     Done  bool   `json:"done"`
 }
 </pre>
-— структура задачи соответствует полям в базе и сериализуется в JSON.
+— структура задачи соответствует полям в базе и сериализуется в JSON.  
 
-handlers.go
-Обработка входящего JSON через c.BindJSON(&task)
+handlers.go  
+Обработка входящего JSON через c.BindJSON(&task)  
 
-Вставка через DB.Exec(...) или DB.Prepare(...).Exec(...)
+Вставка через DB.Exec(...) или DB.Prepare(...).Exec(...)  
 
-Обработка ошибок с c.JSON(http.StatusInternalServerError, gin.H{...})
+Обработка ошибок с c.JSON(http.StatusInternalServerError, gin.H{...})  
 
 Ответ с c.JSON(http.StatusOK, task) или списком задач.
