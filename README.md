@@ -23,11 +23,12 @@ database/sql с драйвером github.com/mattn/go-sqlite3 для работ
 SQLite3 — лёгкая встроенная БД.
 
 ⚙️ Установка и запуск
+<pre> ``` bash go 
 git clone https://github.com/PaRubik163/ToDo_List 
 cd ToDo_List/todoapp
 go mod tidy 
 go run cmd/main.go
-
+```</pre>
 — после этого сервер будет доступен по адресу http://localhost:8060/tasks
 
 | Метод    | Путь             | Описание                  | Тело запроса                        | Ответ                             |
@@ -49,12 +50,13 @@ main.go
 Запускает HTTP‑сервер
 
 models.go 
-
+<pre>``` go
 type Task struct {
     Id    int    `json:"id"`
     Title string `json:"title"`
     Done  bool   `json:"done"`
 }
+```</pre>
 — структура задачи соответствует полям в базе и сериализуется в JSON.
 
 handlers.go
