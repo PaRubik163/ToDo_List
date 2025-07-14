@@ -1,15 +1,20 @@
 package main
 
 import (
-	hand "todoapp/internal/handlers"
 	data "todoapp/internal/database"
+	hand "todoapp/internal/handlers"
+
+	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"net/http"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
-    data.InitSqlite()
+    err := data.InitSqlite()
+	if err != nil{
+		logrus.Fatal(err)
+	}
 
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/tasks.html")
