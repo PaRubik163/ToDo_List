@@ -54,6 +54,7 @@ func DeleteTask(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"Complete": "Task deleted"})
 }
 
+
 func UpdateTask(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 
