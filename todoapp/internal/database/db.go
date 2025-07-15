@@ -1,22 +1,30 @@
 package storage
 
 import (
-	"database/sql"
 
-	_ "github.com/mattn/go-sqlite3"
 	"github.com/sirupsen/logrus"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+	"todoapp/internal/models"
 )
 
-var DB *sql.DB
+var DB *gorm.DB
 
 func InitSqlite() error {
 	var err error
-	DB, err = sql.Open("sqlite3", "./ToDo.db")
+	DB, err = gorm.Open(sqlite.Open("ToDo.db"), &gorm.Config{})
 
 	if err != nil{
+		logrus.Warn("Отствует возможность открыть бд ", err)
 		return err
 	}
+	logrus.Info("База данных инициализирована")
 
-	logrus.Warn("Ошибка открытия базы данных")
+	err = DB.AutoMigrate(&models.Todo{})
+	if err != nil{
+		return nil
+	}
+
+	logrus.Info("Создана таблица")
 	return nil
 }

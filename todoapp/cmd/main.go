@@ -11,21 +11,21 @@ import (
 )
 
 func main() {
-    err := data.InitSqlite()
-	if err != nil{
+	err := data.InitSqlite()
+	if err != nil {
 		logrus.Fatal(err)
 	}
 
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/tasks.html")
 	r.Static("/static", "./templates/static")
-	
-	r.GET("/favicon.ico", func (c *gin.Context){
+
+	r.GET("/favicon.ico", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"ICON": "icon"})
 	})
 	//На этом пути отображается страница
 	r.GET("/tasks", hand.ShowTasksHTML)
-	
+
 	//На этих путях JS общается с Go
 	api := r.Group("/api")
 	{
@@ -35,5 +35,5 @@ func main() {
 		api.DELETE("/tasks/:id", hand.DeleteTask)
 	}
 
-	r.Run("localhost:8060")
+	r.Run("localhost:8080")
 }
