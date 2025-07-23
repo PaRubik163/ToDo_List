@@ -35,5 +35,5 @@ func main() {
 		api.DELETE("/tasks/:id", hand.DeleteTask)
 	}
 
-	r.Run("localhost:8080")
+	r.Run("0.0.0.0:8080")
 }
